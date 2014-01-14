@@ -1,0 +1,11 @@
+.top-bar .navbar-brand {
+	padding: 8px 15px;
+}
+
+.navbar-nav li {
+	margin-bottom: 0;
+}
+
+#wpwrap {
+	margin-top: 22px;
+}

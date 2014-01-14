@@ -9,105 +9,99 @@
 
 get_header(); ?>
 
-		
-		<div id="container">
-		<div id="site-search">
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<?php get_sidebar(); ?>
+		</div>
+		<div class="col-xs-9">
+			<div id="site-search">
 				<?php get_search_form(); ?>								
 			</div>	
-			<br>
-		<?php 
-			breadcrumb_css();
-			simple_breadcrumb();
-		?>
-			<div id="content" role="main">	
-<div id="first" class="widget-area">
-	                <ul class="xoxo">
-						<?php //dynamic_sidebar( 'first-footer-widget-area' ); ?>
-						<?php dynamic_sidebar( 'secondary-widget-area' ); ?>
-						<?php dynamic_sidebar( 'third-footer-widget-area' ); ?>
-						<?php dynamic_sidebar( 'fourth-footer-widget-area' ); ?>
-						<?php echo "" ?>
-	                </ul>
-				</div><!-- #first .widget-area -->		
-<?php $i = 0; ?>
-<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-<?php if($i%2 == 0){?>
-<div id="left">
-<?php } ?>
+			<?php 
+				breadcrumb_css();
+				simple_breadcrumb();
+			?>
 
-<?php if($i%2 != 0){?>
-<div id="right">
-<?php } ?>
+			<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+				<div class="row" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<div class="col-xs-5">
+						<div class="well">
+							<?php  
+								$images = get_children( array( 'post_parent' => $post->ID, 'post_type' => 'attachment', 'post_mime_type' => 'image', 'orderby' => 'menu_order', 'order' => 'ASC', 'numberposts' => 999 ) );
+								$total_images = count( $images );
+								$image = array_shift( $images );
+								$image_img_src = wp_get_attachment_image_src( $image->ID, 'large' );
+							?>
+							<img class="oops-book-image img-responsive" src="<?php echo $image_img_src[0] ?>">
+						</div>
+					</div>
+					<div class="col-xs-7">
+						<h3><?php the_title(); ?></h3>
+						<small>Tác giả: <a href="#"><?php echo get_post_meta($post->ID, 'TenTacGia', true) ?></a></small>
+						<p>
+							<?php 
+								$theContent = get_the_content();
+								$shortContent = strip_tags($theContent);
+								$shortContent = limit_words($shortContent, 50);
+								echo $shortContent;
+							?>
+						</p>
+						<a href="#oops-detail" class="btn btn-primary">Xem chi tiết</a>
+						<?php if ( is_user_logged_in() ): ?>
+							<a href="<?php echo get_post_meta($post->ID, 'LinkDownLoad', true); ?>" class="btn btn-danger"><span class="glyphicon glyphicon-download-alt"></span>Tải sách về máy</a>
+						<?php else: ?>
+							<a href="http://suutapsach.com/wp-login.php?redirect_to=http://www.suutapsach.com<?php echo get_permalink( $post->ID ); ?>" class="btn btn-danger"><span class="glyphicon glyphicon-download-alt"></span>Tải sách về máy</a>
+						<?php endif; ?>	
+						<hr/>
+						<div class="oops-share">
+							<div class="fb-like" data-href="<?php the_permalink(); ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<ul class="nav nav-tabs" id="oops-detail">
+						  	<li class="active"><a href="#gioi-thieu" data-toggle="tab">Giới thiệu</a></li>
+						  	<li>
+						  		<a href="#binh-luan" data-toggle="tab">
+						  			Bình luận
+						  			(<fb:comments-count href=<?php the_permalink(); ?>/></fb:comments-count>)
+						  		</a>
+						  	</li>
+						</ul>
 
-				<div id="nav-above" class="navigation">
-					<div class="nav-previous"><?php //previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'twentyten' ) . '</span> %title' ); ?></div>
-					<div class="nav-next"><?php //next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'twentyten' ) . '</span>' ); ?></div>
-				</div><!-- #nav-above -->
-
-				<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					<h1 class="entry-title"><?php echo '<span style="color:blue">Tên Sách: </span>';the_title() ?></h1>
-					<h2 class="entry-title"><?php echo '<span style="color:blue">Tên Tác Giả: </span>'; echo get_post_meta($post->ID, 'TenTacGia', true); ?></h2>
-
-					<div class="entry-meta">
-						<?php //twentyten_posted_on(); ?>
-					</div><!-- .entry-meta -->
-
-					<div class="entry-content">
-						<?php the_content(); ?>
-						<?php							
-							if ( is_user_logged_in() ) 
-							{?>
-								<a href='<?php echo get_post_meta($post->ID, 'LinkDownLoad', true); ?>'> Link donwload sách </a>
-								
-							<?php
-							} 
-							else 
-							{?>
-								<a href='http://suutapsach.com/wp-login.php?redirect_to=http://www.suutapsach.com<?php echo get_permalink( $post->ID ); ?>'> Link donwload sách </a>
-							<?php	
-							}
-							?>						
-						<?php //wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
-					</div><!-- .entry-content -->
-
-<?php if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
-					<div id="entry-author-info">
-						<div id="author-avatar">
-							<?php //echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'twentyten_author_bio_avatar_size', 60 ) ); ?>
-						</div><!-- #author-avatar -->
-						<div id="author-description">
-							<h2><?php //printf( esc_attr__( 'About %s', 'twentyten' ), get_the_author() ); ?></h2>
-							<?php //the_author_meta( 'description' ); ?>
-							<div id="author-link">
-								<a href="<?php //echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
-									<?php //printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'twentyten' ), get_the_author() ); ?>
-								</a>
-							</div><!-- #author-link	-->
-						</div><!-- #author-description -->
-					</div><!-- #entry-author-info -->
-<?php endif; ?>
-
-					<div class="entry-utility">
-						<?php //twentyten_posted_in(); ?>
-						<?php //edit_post_link( __( 'Edit', 'twentyten' ), '<span class="edit-link">', '</span>' ); ?>
-					</div><!-- .entry-utility -->
-				</div><!-- #post-## -->
-
-				<div id="nav-below" class="navigation">
-					<div class="nav-previous"><?php //previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'twentyten' ) . '</span> %title' ); ?></div>
-					<div class="nav-next"><?php //next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'twentyten' ) . '</span>' ); ?></div>
-				</div><!-- #nav-below -->
-
-				<?php //comments_template( '', true ); ?>
-
-</div>
-<?php $i ++;?>
-<?php endwhile; // end of the loop. ?>
-
-			</div><!-- #content -->
-		<div class="fb-comments" data-href="<?php $Path=$_SERVER['REQUEST_URI'];
-$URI='http://suutapsach.com'.$Path; echo $URI; ?>" data-width="470" data-num-posts="10"></div>	
-		</div><!-- #container -->
-		
-<?php get_sidebar(); ?>
+						<div class="tab-content">
+						  	<div class="tab-pane active" id="gioi-thieu">
+						  		<?php the_content(); ?>
+						  	</div>
+						  	<div class="tab-pane" id="binh-luan">
+								<div class="fb-comments" data-href="<?php the_permalink(); ?>" data-num-posts="10"></div>	
+						  	</div>
+						</div>
+					</div>
+				</div>
+			<?php endwhile; ?>
+		</div>
+	</div>
+</div><!-- #container -->
+<?php 
+/**
+ * @author by Chris Coyier
+ * @source http://css-tricks.com/snippets/php/truncate-string-by-words/
+ */
+function limit_words($words, $limit, $append = ' &hellip;') {
+   // Add 1 to the specified limit becuase arrays start at 0
+   $limit = $limit+1;
+   // Store each individual word as an array element
+   // Up to the limit
+   $words = explode(' ', $words, $limit);
+   // Shorten the array by 1 because that final element will be the sum of all the words after the limit
+   array_pop($words);
+   // Implode the array for output, and append an ellipse
+   $words = implode(' ', $words) . $append;
+   // Return the result
+   return $words;
+}
+?>
 <?php get_footer(); ?>

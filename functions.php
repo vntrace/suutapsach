@@ -472,6 +472,15 @@ function twentyten_widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
+
+	// Area 6, located in the footer. Empty by default.
+	register_sidebar( array(
+		'name' => __( 'Chợ sidebar', 'twentyfourteen' ),
+		'id' => 'cho-sidebar-widget-area',
+		'description' => __( 'Left sidebar', 'twentyfourteen' ),
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );	
 }
 /** Register sidebars by running twentyten_widgets_init() on the widgets_init hook. */
 add_action( 'widgets_init', 'twentyten_widgets_init' );
@@ -548,3 +557,19 @@ function custom_upload_mimes ( $existing_mimes=array() ) {
     // and return the new full result
     return $existing_mimes; 
 }
+
+function admin_css() {
+	wp_register_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css' );
+	wp_register_style( 'admin-css', get_template_directory_uri() . '/css/admin.css' );
+
+	wp_enqueue_style( 'bootstrap' );
+	wp_enqueue_style( 'admin-css' );
+}
+
+function admin_js() {
+	wp_register_script('bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js');
+	wp_enqueue_script('bootstrap');
+}
+
+add_action('admin_print_styles', 'admin_css' );
+add_action('wp_enqueue_scripts', 'admin_js' );

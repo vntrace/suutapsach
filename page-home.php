@@ -7,7 +7,8 @@
 	<div class="col-xs-6">
 		<div class="oops pull-right">
 			<a class="oops-content" href="<?php bloginfo('url') ?>/sach">
-				<img src="http://placehold.it/80x80">
+				<!-- <img src="http://placehold.it/80x80"> -->
+				<img src="<?php bloginfo('template_url') ?>/images/1389387083_Book.png">
 				<h3>Sách</h3>
 				<p class="summary">Trang Sách nơi bạn tìm sách, truyện, tài liệu</p>
 			</a>
@@ -16,7 +17,7 @@
 	<div class="col-xs-6">
 		<div class="oops pull-left">
 			<a class="oops-content" href="<?php bloginfo('url') ?>/cho">
-				<img src="http://placehold.it/80x80">
+				<img src="<?php bloginfo('template_url') ?>/images/1389387923_sell.png">
 				<h3>Chợ</h3>
 				<p class="summary">Nơi mua bán, trao đổi hàng hoá.</p>
 			</a>

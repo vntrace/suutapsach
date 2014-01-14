@@ -7,11 +7,6 @@
  * @since Twenty Ten 1.0
  */
 ?>
-<div id="sidebar" class="col-xs-3">
-	
-</div>
-
-
 		<div id="primary" class="widget-area" role="complementary">
 			<ul class="xoxo">
 			<?php //wp_nav_menu( array( 'container_class' => 'menu-header', 'theme_location' => 'primary' ) );  ?>				
@@ -43,7 +38,7 @@
 				</ul>
 			</li>
 
-		<?php endif; // end primary widget area ?>
+	<?php endif; // end primary widget area ?>
 			</ul>
 		</div><!-- #primary .widget-area -->
 
@@ -59,3 +54,5 @@
 		</div><!-- #secondary .widget-area -->
 
 <?php endif; ?>
+
+

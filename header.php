@@ -49,7 +49,7 @@
 <link rel="shortcut icon" href="http://www.suutapsach.com/images/favicon.ico" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/bootstrap.min.css" />
-<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/style.css" />
+<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/js/jquery-ui.css" />
 <?php
 	/* We add some JavaScript to pages with the comment form
 	 * to support sites with threaded comments (when in use).
@@ -65,7 +65,10 @@
 	wp_head();
 ?>
 
+<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/css/style.css" />
+
 <script type="text/javascript" src="<?php bloginfo('template_url') ?>/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url') ?>/js/jquery-ui.js"></script>
 
 </head>
 
@@ -98,10 +101,13 @@
 			?>
 				<ul class="nav navbar-nav navbar-right">
 		            <li class="dropdown">
-		            	<a href="#" data-toggle="dropdown"><?php echo $user_identity; ?></a>
+		            	<a href="#" data-toggle="dropdown">
+		            		<?php echo $user_identity; ?>
+		            		<span class="caret"></span>
+		            	</a>
 		            	<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 		            		<li><a href="<?php echo site_url('wp-admin/profile.php') ?>"><?php _e('Xem profile') ?></a></li>
-							<li><a href="<?php echo wp_logout_url(home_url()); ?>" title="<?php _e('Thoát'); ?>"></a></li>
+							<li><a href="<?php echo wp_logout_url(home_url()); ?>" title="<?php _e('Thoát'); ?>"><?php _e('Thoát'); ?></a></li>
 					  	</ul>
 		            </li>
 		      	</ul>
