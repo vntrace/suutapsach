@@ -8,24 +8,22 @@
  */
 get_header(); 
 ?>
-<div class="container">
-	<div class="row">
-		<div class="col-xs-3">
-			<?php get_sidebar(); ?>
-		</div>
-		<div class="col-xs-9">
-			<div id="site-search">
-				<?php get_search_form(); ?>								
-			</div>	
-			<?php 
-				breadcrumb_css();
-				simple_breadcrumb();
-			?>
-
-			<?php
-				get_template_part( 'loop', 'category' );
-			?>
-		</div>
+<div class="row">
+	<div class="col-xs-3">
+		<?php get_sidebar(); ?>
 	</div>
-</div><!-- #container -->
+	<div class="col-xs-9">
+		<div id="site-search">
+			<?php get_search_form(); ?>								
+		</div>	
+		<?php 
+			breadcrumb_css();
+			simple_breadcrumb();
+		?>
+
+		<?php
+			get_template_part( 'loop', 'category' );
+		?>
+	</div>
+</div>
 <?php get_footer(); ?>

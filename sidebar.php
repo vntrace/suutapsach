@@ -40,6 +40,10 @@
 
 	<?php endif; // end primary widget area ?>
 			</ul>
+
+			<!-- Fanpage -->
+			
+
 		</div><!-- #primary .widget-area -->
 
 <?php

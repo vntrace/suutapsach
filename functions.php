@@ -572,4 +572,11 @@ function admin_js() {
 }
 
 add_action('admin_print_styles', 'admin_css' );
-add_action('wp_enqueue_scripts', 'admin_js' );
+add_action('admin_enqueue_scripts', 'admin_js' );
+
+function go_home(){
+  	wp_redirect( home_url() );
+  	exit();
+}
+
+add_action('wp_logout','go_home');

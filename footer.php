@@ -4,15 +4,16 @@
 		<div class="row">
 			<div class="col-xs-6">
 				<ul class="footer-link">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Sách</a></li>
-					<li><a href="#">Chợ</a></li>
-					<li><a href="#">Giới thiệu</a></li>
+					<li><a href="<?php bloginfo('url') ?>">Home</a></li>
+		            <li><a href="<?php bloginfo('url') ?>/sach">Sách</a></li>
+		            <li><a href="<?php bloginfo('url') ?>/cho">Chợ</a></li>
+		            <li><a href="<?php bloginfo('url') ?>/gioi-thieu">Giới thiệu</a></li>
 				</ul>
 			</div>
 			<div class="col-xs-6">
 				<ul class="footer-link pull-right">
-					<li><a href="#"><img width="32" height="32" src="<?php bloginfo('template_url') ?>/images/facebook_square.png"></a></li>
+					<li style="line-height: 22pt">Follow us: </li>
+					<li><a href="https://www.facebook.com/suutapsach.comcho"><img width="32" height="32" src="<?php bloginfo('template_url') ?>/images/facebook_square.png"></a></li>
 					<li><a href="#"><img width="32" height="32" src="<?php bloginfo('template_url') ?>/images/twitter_square.png"></a></li>
 					<li><a href="#"><img width="32" height="32" src="<?php bloginfo('template_url') ?>/images/google_square.png"></a></li>
 				</ul>

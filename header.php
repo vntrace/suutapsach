@@ -90,10 +90,15 @@
 	    </div>
 	    <div class="navbar-collapse collapse">
 	      	<ul class="nav navbar-nav">
-	            <li class="active"><a href="<?php bloginfo('url') ?>">Home</a></li>
+	            <li><a href="<?php bloginfo('url') ?>">Home</a></li>
 	            <li><a href="<?php bloginfo('url') ?>/sach">Sách</a></li>
 	            <li><a href="<?php bloginfo('url') ?>/cho">Chợ</a></li>
 	            <li><a href="<?php bloginfo('url') ?>/gioi-thieu">Giới thiệu</a></li>
+	            <li>
+	            	<a href="#">
+	            		<div class="fb-like" data-href="https://www.facebook.com/suutapsach.comcho" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+	            	</a>
+	            </li>
 	      	</ul>
 	      	<?php 
 				global $user_identity, $user_ID;
@@ -118,11 +123,11 @@
 		            		<?php if (get_option('wpslr_lreg') == 1){ ?>
 		            			<a id="register" href="<?php echo site_url('wp-signup.php'); ?>"><?php echo _e('Đăng Ký') ?></a>
 		                	<?php } else { ?>
-		                		<a id="register" href="#"><?php echo _e('Đăng Ký') ?></a>
+		                		<a id="register" href="<?php echo site_url('wp-signup.php'); ?>"><?php echo _e('Đăng Ký') ?></a>
 		            		<?php } ?>
 		                </li>
 					<?php } ?>
-		            <li><a href="#"><?php _e('Đăng Nhập'); ?></a></li>
+		            <li><a href="<?php echo site_url('wp-login.php'); ?>"><?php _e('Đăng Nhập'); ?></a></li>
 		      	</ul>
 	      	<?php endif; ?>
 	    </div><!--/.nav-collapse -->
